@@ -26,7 +26,7 @@ services:
 ### Установка и запуск
 1. docker-compose up -d --force-recreate
 2. docker volume create schema.sql
-3. docker-compose exec -T mysql mysql app -u app -p pass < docker-entrypoint-initdb.d/schema.sql
+3. docker-compose exec -T mysql mysql app -u app -p pass < init_db/schema.sql
 ```mysql  Ver 8.0.18 for Linux on x86_64 (MySQL Community Server - GPL)
    Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
    
@@ -272,7 +272,7 @@ services:
    zstd-compression-level            3
    
 ```
-4. docker-compose exec mysql mysql -u user -p app
+4. docker-compose exec mysql mysql -u app -p app
 ```Enter password:
    Welcome to the MySQL monitor.  Commands end with ; or \g.
    Your MySQL connection id is 17
@@ -297,7 +297,8 @@ services:
    +--------------------+
    2 rows in set (0.00 sec)
    
-6. java -jar app-deadline.jar -P:jdbc.url=jdbc:mysql://192.168.99.100:3306/app -P:jdbc.user=user -P:jdbc.password=pass
+6. java -jar artifacts/app-deadline.jar -P:jdbc.url=jdbc:mysql://192.168.99.100:3306/app -P:jdbc.user=app -P:jdbc.password=pass
+
 ```2020-05-29 00:44:38.445 [main] TRACE Application - {
        # application.conf @ jar:file:/C:/Users/Pepper/IdeaProjects/sql/app-deadline.jar!/application.conf: 6
        "application" : {
