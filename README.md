@@ -24,9 +24,9 @@ services:
 На ПК должна быть установлена JDK, IntelliJ IDEA, Docker Toolbox
 
 ### Установка и запуск
-1. docker-compose up -d --force-recreate
-2. docker volume create schema.sql
-3. docker-compose exec -T mysql mysql app -u app -p pass < init_db/schema.sql
+1. docker-compose up 
+(2. docker volume create schema.sql
+3. docker-compose exec -T mysql mysql app -u app -p pass < init_db/schema.sql)
 ```mysql  Ver 8.0.18 for Linux on x86_64 (MySQL Community Server - GPL)
    Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
    
@@ -272,7 +272,7 @@ services:
    zstd-compression-level            3
    
 ```
-4. docker-compose exec mysql mysql -u app -p app
+(4. docker-compose exec mysql mysql -u app -p app)
 ```Enter password:
    Welcome to the MySQL monitor.  Commands end with ; or \g.
    Your MySQL connection id is 17
