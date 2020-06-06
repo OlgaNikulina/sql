@@ -25,11 +25,11 @@ services:
 
 ### Установка и запуск
 1. Запустить Docker Toolbox
-1. docker-compose up 
-(2. docker volume create schema.sql
-3. docker-compose exec -T mysql mysql app -u app -p pass < init_db/schema.sql)
-(4. docker-compose exec mysql mysql -u app -p app)
-5. mysql> show databases;
+2. docker-compose up 
+(docker volume create schema.sql
+docker-compose exec -T mysql mysql app -u app -p pass < init_db/schema.sql)
+(docker-compose exec mysql mysql -u app -p app)
+mysql> show databases;
    +--------------------+
    | Database           |
    +--------------------+
@@ -38,9 +38,9 @@ services:
    +--------------------+
    2 rows in set (0.00 sec)
    
-6. java -jar artifacts/app-deadline.jar -P:jdbc.url=jdbc:mysql://192.168.99.100:3306/app -P:jdbc.user=app -P:jdbc.password=pass
+3. java -jar artifacts/app-deadline.jar -P:jdbc.url=jdbc:mysql://192.168.99.100:3306/app -P:jdbc.user=app -P:jdbc.password=pass
 
-7. mysql> show tables;
+4. mysql> show tables;
    +-------------------+
    | Tables_in_app     |
    +-------------------+
@@ -51,3 +51,4 @@ services:
    +-------------------+
    4 rows in set (0.00 sec)
 
+5. При повторном запуске выполнить docker-compose down,  удалить /init_db, создать заново /init_db, положить туда схему, выполнить п.2, п.3. 
