@@ -16,7 +16,8 @@ public class LoginTest {
     void shouldLogin() throws SQLException {
         val loginPage = open("http://localhost:9999)", LoginPage.class);
         val authInfo = DataHelper.getAuthInfo();
+        val verificationPage = loginPage.validLogin(authInfo);
         val verificationCode = DataHelper.getVerificationCode();
-        val verificationPage = VerificationPage.validVerify;
+        val verification = verificationPage.validVerify(verificationCode);
     }
 }
