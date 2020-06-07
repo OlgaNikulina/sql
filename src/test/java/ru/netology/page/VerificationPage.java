@@ -3,6 +3,8 @@ package ru.netology.page;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
 
+import java.sql.SQLException;
+
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -14,7 +16,7 @@ public class VerificationPage {
         codeField.shouldBe(visible);
     }
 
-    public DashboardPage validVerify(DataHelper.VerificationCode verificationCode) {
+    public DashboardPage validVerify(String verificationCode) {        
         codeField.setValue(verificationCode.getCode());
         verifyButton.click();
         return new DashboardPage();
