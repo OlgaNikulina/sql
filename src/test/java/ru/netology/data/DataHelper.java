@@ -25,7 +25,7 @@ public class DataHelper {
         private String code;
     }
 
-    public static String getVerificationCode() throws SQLException {
+    public static VerificationCode getVerificationCode() throws SQLException {
         val authCodeSQL = "SELECT  code FROM auth_codes";
 
         try (
@@ -41,7 +41,7 @@ public class DataHelper {
                 }
             }
         }
-        return authCodeSQL;
+        return new VerificationCode(authCodeSQL);
     }
 }
 
