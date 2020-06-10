@@ -20,28 +20,43 @@ public class DataHelper {
         return new AuthInfo("vasya", "qwerty123");
     }
 
+    public static AuthInfo getAuthInfoWithInvalidLoginAndPassword() {
+        return new AuthInfo("коля", "12345");
+    }
+
+    public static AuthInfo getAuthInfoWithEmptyFieldsLoginAndPassword() {
+        return new AuthInfo(" ", " ");
+    }
+
     @Value
     public static class VerificationCode {
         private String code;
     }
 
     public static VerificationCode getVerificationCode() throws SQLException {
-        val authCodeSQL = "SELECT  code FROM auth_codes";
-
+        val authCodeSQL = "SELECT  code FROM auth_codes order by created desc limit 1;";
         try (
                 val conn = DriverManager.getConnection(
-                        "jdbc:mysql://localhost:3306/app", "app", "pass"
+                        "jdbc:mysql://192.168.99.100:3306/app", "app", "pass"
                 );
                 val authCodeStmt = conn.prepareStatement(authCodeSQL);
         ) {
             try (val rs = authCodeStmt.executeQuery(authCodeSQL)) {
+                String code = "";
                 while (rs.next()) {
-                    val code = rs.getString("code");
-                    System.out.println(code);
+                    code = rs.getString("code");
                 }
+                return new VerificationCode(code);
             }
         }
-        return new VerificationCode(authCodeSQL);
+    }
+
+    public static VerificationCode getWrongVerificationCode(){
+        return new VerificationCode("1");
+    }
+
+    public static VerificationCode getEmptyVerificationCode(){
+        return new VerificationCode(" ");
     }
 }
 

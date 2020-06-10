@@ -1,5 +1,6 @@
 package ru.netology.page;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
 
@@ -15,5 +16,19 @@ public class LoginPage {
         passwordField.setValue(info.getPassword());
         buttonContinue.click();
         return new VerificationPage();
+    }
+
+    public ErrorNotificationPage invalidLoginAndPassword(DataHelper.AuthInfo info) {
+        loginField.setValue(info.getLogin());
+        passwordField.setValue(info.getPassword());
+        buttonContinue.click();
+        return new ErrorNotificationPage();
+    }
+
+    public ReplenishFieldPage emptyFieldsLoginAndPassword(DataHelper.AuthInfo info) {
+        loginField.setValue(info.getLogin());
+        passwordField.setValue(info.getPassword());
+        buttonContinue.click();
+        return new ReplenishFieldPage();
     }
 }

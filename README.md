@@ -16,7 +16,7 @@ services:
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_DATABASE=app
-      - MYSQL_USER=user
+      - MYSQL_USER=app
       - MYSQL_PASSWORD=pass
 ```                                                                                                                                                         
                                                                                                                                                                         
@@ -25,30 +25,6 @@ services:
 
 ### Установка и запуск
 2. Запустить Docker Toolbox
-3. docker-compose up 
-(docker volume create schema.sql
-docker-compose exec -T mysql mysql app -u app -p pass < init_db/schema.sql)
-(docker-compose exec mysql mysql -u app -p app)
-mysql> show databases;
-   +--------------------+
-   | Database           |
-   +--------------------+
-   | app                |
-   | information_schema |
-   +--------------------+
-   2 rows in set (0.00 sec)
-   
+3. выполнить команду docker-compose up    
 4. java -jar artifacts/app-deadline.jar -P:jdbc.url=jdbc:mysql://192.168.99.100:3306/app -P:jdbc.user=app -P:jdbc.password=pass
-
-5. mysql> show tables;
-   +-------------------+
-   | Tables_in_app     |
-   +-------------------+
-   | auth_codes        |
-   | card_transactions |
-   | cards             |
-   | users             |
-   +-------------------+
-   4 rows in set (0.00 sec)
-
-6. При повторном запуске выполнить docker-compose down,  удалить /init_db, создать заново /init_db, положить туда схему, выполнить п.3, п.4. 
+5. При повторном запуске выполнить docker-compose down,  выполнить п.3, п.4. 
